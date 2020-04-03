@@ -1,33 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: 'AWS CloudFormation Sample Template for S3 Bucket Creation.'
 Resources:
-  Bucket1:
+  Asset:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: "jiteshkarki1-test"
   
-  Bucket2:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: "jiteshkarki2-test"
-  
-  Bucket3:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: "jiteshkarki3-test"    
-
-  Bucket4:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: "jiteshkarki4-test"  
-
-  Bucket5:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: "jiteshkarki5-test"  
-
-  Bucket6:
-     Type: AWS::S3::Bucket
-     Properties:
-       BucketName: "Jiteshkarki6-test1"    
+    
     
