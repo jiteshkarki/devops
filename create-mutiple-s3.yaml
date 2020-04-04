@@ -20,32 +20,32 @@ Parameters:
 Resources:
 
     # S3 Bucket for build artifacts
-    BuildArtifactsBucket:
+    BuildJiteshArtifactsBucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
           BucketName: !Sub '${JiteshArtifactsBucket}'
 
     # S3 Bucket for Dev environment
-    DevS3Bucket:
+    JiteshDevS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
           BucketName: !Sub '${JiteshDevBucket}'
-        DependsOn: "BuildArtifactsBucket"
+        DependsOn: "BuildJiteshArtifactsBucket"
 
     # S3 Bucket for Staging environment
-    StagingS3Bucket:
+    JiteshStagingS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
           BucketName: !Sub '${JiteshStagingBucket}'
-        DependsOn: "DevS3Bucket"
+        DependsOn: "JiteshDevS3Bucket"
 
     # S3 Bucket for Production environment
-    ProductionS3Bucket:
+    JiteshProductionS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
           BucketName: !Sub '${JiteshProductionBucket}'
-        DependsOn: "StagingS3Bucket"
+        DependsOn: "jiteshStagingS3Bucket"
