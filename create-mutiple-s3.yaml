@@ -1,51 +1,54 @@
+
+
+~
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-    JiteshArtifactsBucket:
+    ArtifactsBucket:
         Type: String
-        Default: artifacts.bucket
+        Default: artifacts.bucketjiteshkarki
         Description: S3 Bucket Name for CodeBuild Artifacts
-    JiteshDevBucket:
+    DevBucket:
         Type: String
-        Default: dev.bucket
+        Default: dev.bucketjiteshkarki
         Description: S3 Bucket Name for Dev environment.
-    JiteshStagingBucket:
+    StagingBucket:
         Type: String
-        Default: staging.bucket
+        Default: staging.bucketjiteshkarki
         Description: S3 Bucket Name for Staging environment
-    JiteshProductionBucket:
+    ProductionBucket:
         Type: String
-        Default: production.bucket
+        Default: production.bucketjiteshkarki
         Description: S3 Bucket Name for Production environment
 
 Resources:
 
     # S3 Bucket for build artifacts
-    BuildJiteshArtifactsBucket:
+    BuildArtifactsBucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${JiteshArtifactsBucket}'
+          BucketName: !Sub '${ArtifactsBucket}'
 
     # S3 Bucket for Dev environment
-    JiteshDevS3Bucket:
+    DevS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${JiteshDevBucket}'
-        DependsOn: "BuildJiteshArtifactsBucket"
+          BucketName: !Sub '${DevBucket}'
+        DependsOn: "BuildArtifactsBucket"
 
     # S3 Bucket for Staging environment
-    JiteshStagingS3Bucket:
+    StagingS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${JiteshStagingBucket}'
-        DependsOn: "JiteshDevS3Bucket"
+          BucketName: !Sub '${StagingBucket}'
+        DependsOn: "DevS3Bucket"
 
     # S3 Bucket for Production environment
-    JiteshProductionS3Bucket:
+    ProductionS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${JiteshProductionBucket}'
-        DependsOn: "jiteshStagingS3Bucket"
+          BucketName: !Sub '${ProductionBucket}'
+        DependsOn: "StagingS3Bucket"
