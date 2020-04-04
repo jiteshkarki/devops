@@ -1,18 +1,18 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-    ArtifactsBucket:
+    Jitesh-ArtifactsBucket:
         Type: String
         Default: artifacts.bucket
         Description: S3 Bucket Name for CodeBuild Artifacts
-    DevBucket:
+    Jitesh-DevBucket:
         Type: String
         Default: dev.bucket
         Description: S3 Bucket Name for Dev environment.
-    StagingBucket:
+    Jitesh-StagingBucket:
         Type: String
         Default: staging.bucket
         Description: S3 Bucket Name for Staging environment
-    ProductionBucket:
+    Jitesh-ProductionBucket:
         Type: String
         Default: production.bucket
         Description: S3 Bucket Name for Production environment
@@ -24,14 +24,14 @@ Resources:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${ArtifactsBucket}'
+          BucketName: !Sub '${Jitesh-ArtifactsBucket}'
 
     # S3 Bucket for Dev environment
     DevS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${DevBucket}'
+          BucketName: !Sub '${Jitesh-DevBucket}'
         DependsOn: "BuildArtifactsBucket"
 
     # S3 Bucket for Staging environment
@@ -39,7 +39,7 @@ Resources:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${StagingBucket}'
+          BucketName: !Sub '${Jitesh-StagingBucket}'
         DependsOn: "DevS3Bucket"
 
     # S3 Bucket for Production environment
@@ -47,5 +47,5 @@ Resources:
         Type: AWS::S3::Bucket
         Properties:
           AccessControl: Private
-          BucketName: !Sub '${ProductionBucket}'
+          BucketName: !Sub '${Jitesh-ProductionBucket}'
         DependsOn: "StagingS3Bucket"
