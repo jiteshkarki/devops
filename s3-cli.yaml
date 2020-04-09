@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+    ArtifactsBucket:
+        Type: String
+        Default: artifacts.bucketjiteshkarki
+        Description: S3 Bucket Name for CodeBuild Artifacts
+    
+Resources:
+
+    # S3 Bucket for build artifacts
+    BuildArtifactsBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+          AccessControl: Private
+          BucketName: !Sub '${ArtifactsBucket}'
+
+   
