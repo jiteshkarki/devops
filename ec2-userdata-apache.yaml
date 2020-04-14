@@ -6,7 +6,8 @@ Description: 'AWS CloudFormation Sample Template VPC_with_PublicIPs_And_DNS: Sam
 Parameters:
   KeyPair:
     Description: devopsintellipaat
-    Type: string
+    Type: String
+    Default: devopsintellipaat
       
   InstanceType:
     Description: EC2 instance type
