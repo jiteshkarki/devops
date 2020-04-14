@@ -1,0 +1,13 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: This is my first cloud formation handson 
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance                     
+    Properties:
+      ImageId: "ami-0323c3dd2da7fb37d"
+      InstanceType: "t2.micro"
+      KeyName: "devopsintellipaat"
+      SecurityGroupIds: 
+                  - "sg-0fa8010077d79e755"
+      SubnetId:  "subnet-01b0815d"   
