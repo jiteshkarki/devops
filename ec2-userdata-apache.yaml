@@ -6,7 +6,17 @@ Description: 'AWS CloudFormation Sample Template VPC_with_PublicIPs_And_DNS: Sam
 Parameters:
   KeyPair:
     Description: Name of the keypair to use for SSH access
+    Type: 'AWS::EC2::KeyPair::KeyName'  # standard type
+    ConstraintDescription: devopsintellipaat
+  
+  InstanceType:
+    Description: EC2 instance type
     Type: String
+    Default: t2.micro
+  InstanceImageId:
+    Description: EC2 Image Id from this region
+    Type: AWS::EC2::Image::Id
+    Default: ami-0323c3dd2da7fb37d   
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -77,8 +87,8 @@ Resources:
   WebServerInstance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t2.micro
-      ImageId: ami-8c1be5f6
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref InstanceImageId
       NetworkInterfaces:
       - GroupSet:
         - Ref: WebServerSecurityGroup
