@@ -5,10 +5,9 @@ Description: 'AWS CloudFormation Sample Template VPC_with_PublicIPs_And_DNS: Sam
   for the AWS resources that you use when you create a stack from this template.'
 Parameters:
   KeyPair:
-    Description: Name of the keypair to use for SSH access
-    Type: 'AWS::EC2::KeyPair::KeyName'  # standard type
-    ConstraintDescription: devopsintellipaat
-  
+    Description: devopsintellipaat
+    Type: string
+      
   InstanceType:
     Description: EC2 instance type
     Type: String
