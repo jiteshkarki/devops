@@ -167,7 +167,7 @@ Resources:
       SecurityGroupIngress:
         # allow All Traffic
         - IpProtocol: -1
-          CidrIp: 10.16.0.0/16 # local IP
+          CidrIp: 10.192.0.0/16 # local IP
       Tags:
         - Key: Name
           Value: !Sub ${EnvironmentName} Private SG (AZ1)
