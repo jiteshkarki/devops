@@ -1,0 +1,53 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: This is my first cloud formation handson 
+Resources:
+  EC2InstancePub:
+    Type: AWS::EC2::Instance                     
+    Properties:
+      ImageId: "ami-0323c3dd2da7fb37d"
+      InstanceType: "t2.micro"
+      KeyName: "devopsintellipaat"
+      SubnetId:
+        Fn::ImportValue: !Sub "${AWS::Region}-my-vpc-import-PublicSubnet1"
+      SecurityGroupIds:
+        - Fn::ImportValue: !Sub "${AWS::Region}-my-vpc-import-PublicSecurityGroup"     
+      UserData: 
+        Fn::Base64: |
+          #!/bin/bash -xe
+          yum update -y # good practice to update existing packages
+          yum install -y httpd # install web server 
+          systemctl start httpd
+          systemctl enable httpd
+          echo "This is Public Instances" > /var/www/html/index.html
+      Tags: 
+       - Key: Name
+         Value: public-ec2
+       - Key: Application
+         Value:
+           Ref: "AWS::StackName"
+  EC2InstancePvt:
+    Type: AWS::EC2::Instance                     
+    Properties:
+      ImageId: "ami-0323c3dd2da7fb37d"
+      InstanceType: "t2.micro"
+      KeyName: "devopsintellipaat"
+      SubnetId:
+        Fn::ImportValue: !Sub "${AWS::Region}-my-vpc-import-PrivateSubnet1"
+      SecurityGroupIds:
+        - Fn::ImportValue: !Sub "${AWS::Region}-my-vpc-import-PrivateSecurityGroup"     
+      UserData: 
+        Fn::Base64: |
+          #!/bin/bash -xe
+          yum update -y 
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "This is private instances" > /var/www/html/index.html
+      Tags: 
+       - Key: Name
+         Value: private-ec2
+       - Key: Application
+         Value:
+           Ref: "AWS::StackName"          
+      
